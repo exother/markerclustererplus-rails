@@ -1681,6 +1681,11 @@ MarkerClusterer.IMAGE_SIZES = [53, 56, 66, 78, 90];
 // START rails modification
 // get host js file is served from
 var scriptList = document.getElementsByTagName('script');
-var thisScriptSource=scriptList[scriptList.length-1].getAttribute("src");
+for(var i=0; i < scriptList.length; i++){
+    if(scriptList[i].hasAttribute('src') && scriptList[i].getAttribute('src').split('assets').length > 1){
+      var thisScriptSource=scriptList[i].getAttribute('src');
+      break;
+    }
+}
 MarkerClusterer.IMAGE_HOST = thisScriptSource.split('assets')[0];
 // END rails modification
